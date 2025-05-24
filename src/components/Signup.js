@@ -77,7 +77,6 @@ const Signup = () => {
         password: formData.password,
       });
 
-      // Save token to localStorage
       const { token } = response.data;
       localStorage.setItem("token", token);
 

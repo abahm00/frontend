@@ -17,17 +17,14 @@ import {
 import { useSelector } from "react-redux";
 
 const Dashboard = () => {
-  // Users state
   const [users, setUsers] = useState([]);
   const [editingUser, setEditingUser] = useState(null);
   const [editedUserData, setEditedUserData] = useState({});
 
-  // Coupons state
   const [coupons, setCoupons] = useState([]);
   const [editingCoupon, setEditingCoupon] = useState(null);
   const [editedCouponData, setEditedCouponData] = useState({});
 
-  // Categories state
   const [categories, setCategories] = useState([]);
   const [editingCategory, setEditingCategory] = useState(null);
   const [editedCategoryData, setEditedCategoryData] = useState({
@@ -36,7 +33,6 @@ const Dashboard = () => {
     imgPreview: "",
   });
 
-  // New user form state
   const [newUser, setNewUser] = useState({
     name: "",
     email: "",
@@ -44,21 +40,18 @@ const Dashboard = () => {
     role: "user",
   });
 
-  // New coupon form state
   const [newCoupon, setNewCoupon] = useState({
     code: "",
     discount: "",
     expires: "",
   });
 
-  // New category form state
   const [newCategory, setNewCategory] = useState({
     name: "",
     imgFile: null,
     imgPreview: "",
   });
 
-  // Loading and error states
   const [error, setError] = useState("");
   const [addingUser, setAddingUser] = useState(false);
   const [addingCoupon, setAddingCoupon] = useState(false);
@@ -79,7 +72,6 @@ const Dashboard = () => {
 
   const token = useSelector((state) => state.auth.token);
 
-  // Fetch functions
   const fetchUsers = async () => {
     try {
       const response = await axios.get("http://localhost:3001/user/get", {
@@ -131,7 +123,6 @@ const Dashboard = () => {
     }
   };
 
-  // User handlers
   const handleDeleteUser = async (id) => {
     try {
       await axios.delete(`http://localhost:3001/user/delete/${id}`, {
@@ -178,7 +169,6 @@ const Dashboard = () => {
     }
   };
 
-  // Coupon handlers
   const handleDeleteCoupon = async (id) => {
     try {
       await axios.delete(`http://localhost:3001/coupon/delete/${id}`, {
@@ -235,7 +225,6 @@ const Dashboard = () => {
     }
   };
 
-  // Category handlers
   const handleDeleteCategory = async (id) => {
     try {
       await axios.delete(`http://localhost:3001/category/delete/${id}`, {
@@ -306,7 +295,6 @@ const Dashboard = () => {
     }
   };
 
-  // Helpers for image preview in category add/edit
   const handleNewCategoryImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -360,12 +348,10 @@ const Dashboard = () => {
     try {
       const formData = new FormData();
 
-      // Always send title, price, stock
       formData.append("title", editedProductData.title);
       formData.append("price", editedProductData.price);
       formData.append("stock", editedProductData.stock);
 
-      // Conditionally send imgCover ONLY IF user selected a new file
       if (editedProductData.imgCover instanceof File) {
         formData.append("imgCover", editedProductData.imgCover);
       }
@@ -396,7 +382,6 @@ const Dashboard = () => {
     }
   };
 
-  // Base URL to load category images, adjust if different
   const baseImageUrl = "http://localhost:3001/uploads/category/";
 
   return (
@@ -405,7 +390,6 @@ const Dashboard = () => {
         Admin Dashboard
       </Typography>
 
-      {/* Add User Section */}
       <Box mb={4}>
         <Typography variant="h6" gutterBottom>
           Add New User
@@ -450,7 +434,6 @@ const Dashboard = () => {
         </Box>
       </Box>
 
-      {/* Users Table */}
       <TableContainer component={Paper} sx={{ mb: 6 }}>
         <Typography variant="h6" p={2}>
           Users
@@ -551,7 +534,6 @@ const Dashboard = () => {
         </Table>
       </TableContainer>
 
-      {/* Add Coupon Section */}
       <Box mb={4}>
         <Typography variant="h6" gutterBottom>
           Add New Coupon
@@ -597,7 +579,6 @@ const Dashboard = () => {
         </Box>
       </Box>
 
-      {/* Coupons Table */}
       <TableContainer component={Paper} sx={{ mb: 6 }}>
         <Typography variant="h6" p={2}>
           Coupons
@@ -703,7 +684,6 @@ const Dashboard = () => {
         </Table>
       </TableContainer>
 
-      {/* Add Category Section */}
       <Box mb={4}>
         <Typography variant="h6" gutterBottom>
           Add New Category
@@ -744,7 +724,6 @@ const Dashboard = () => {
         </Box>
       </Box>
 
-      {/* Categories Table */}
       <TableContainer component={Paper}>
         <Typography variant="h6" p={2}>
           Categories

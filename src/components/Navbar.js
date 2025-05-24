@@ -73,7 +73,6 @@ export default function Navbar() {
               Order History
             </button>
 
-            {/* Dashboard button only for admin */}
             {isAuthenticated && user?.role === "admin" && (
               <button
                 onClick={() => handleNavigation("/dashboard")}
@@ -143,7 +142,6 @@ export default function Navbar() {
               Order History
             </button>
 
-            {/* Dashboard button only for admin */}
             {isAuthenticated && user?.role === "admin" && (
               <button
                 onClick={() => handleNavigation("/dashboard")}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
-import { FaHeart, FaRegHeart } from "react-icons/fa"; // npm install react-icons
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 export default function ProductPage() {
   const [data, setData] = useState([]);
@@ -22,7 +22,6 @@ export default function ProductPage() {
   const [addToCartError, setAddToCartError] = useState("");
   const [quantity, setQuantity] = useState(1);
 
-  // Fetch categories
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -35,7 +34,6 @@ export default function ProductPage() {
     fetchCategories();
   }, []);
 
-  // Fetch products
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -51,7 +49,6 @@ export default function ProductPage() {
     fetchData();
   }, []);
 
-  // Fetch wishlist
   useEffect(() => {
     const fetchWishlist = async () => {
       try {
@@ -95,7 +92,6 @@ export default function ProductPage() {
     }
   };
 
-  // Filters & Sorting
   const handleFiltersAndSort = useCallback(() => {
     let filtered = [...data];
 
@@ -163,7 +159,6 @@ export default function ProductPage() {
   const handleNextPage = () =>
     currentPage < totalPages && setCurrentPage(currentPage + 1);
 
-  // Add to cart function
   const addToCart = async () => {
     if (!selectedProduct) return;
     setAddingToCart(true);
@@ -180,7 +175,7 @@ export default function ProductPage() {
         { headers: { token } }
       );
       alert("Added to cart!");
-      setSelectedProduct(null); // close modal after add to cart
+      setSelectedProduct(null);
     } catch (err) {
       setAddToCartError(
         err.response?.data?.message || "Failed to add product to cart."
@@ -209,7 +204,6 @@ export default function ProductPage() {
     <div className="min-h-screen bg-gray-100 p-4">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:space-x-6">
-          {/* Filters */}
           <div className="w-full md:w-1/4 mb-6 md:mb-0 bg-white p-4 rounded shadow">
             <h2 className="text-lg font-semibold mb-4">Filters</h2>
             <div className="mb-4">
@@ -312,7 +306,6 @@ export default function ProductPage() {
             </div>
           </div>
 
-          {/* Products Grid */}
           <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {paginatedData.map((product) => (
               <div
@@ -344,7 +337,6 @@ export default function ProductPage() {
           </div>
         </div>
 
-        {/* Pagination */}
         <div className="mt-6 flex justify-center space-x-3 items-center">
           <button
             disabled={currentPage === 1}
@@ -378,7 +370,6 @@ export default function ProductPage() {
         </div>
       </div>
 
-      {/* Product Modal */}
       {selectedProduct && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
@@ -415,7 +406,6 @@ export default function ProductPage() {
               Rating: ⭐ {selectedProduct.rateAvg?.toFixed(1) || "N/A"}
             </p>
 
-            {/* Quantity input */}
             <div className="mb-4">
               <label className="block mb-1 font-medium">Quantity</label>
               <input
@@ -430,7 +420,6 @@ export default function ProductPage() {
               />
             </div>
 
-            {/* Add to Cart button */}
             <button
               onClick={addToCart}
               disabled={addingToCart}
@@ -441,7 +430,6 @@ export default function ProductPage() {
               {addingToCart ? "Adding..." : "Add to Cart"}
             </button>
 
-            {/* Error message */}
             {addToCartError && (
               <p className="mt-2 text-red-500 font-semibold">
                 {addToCartError}

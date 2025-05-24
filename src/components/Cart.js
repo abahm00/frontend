@@ -168,7 +168,7 @@ const CartPage = () => {
 
       const stripe = window.Stripe(
         "pk_test_51RRxy1RqLVMLDrLJawFfaFRr2a6rYytHfSp0aRxk8UVMzuruiIYbnUT0U1V7tRmpBn31WRg9TbBA5pfBFKiINJ8e005ebQKzkE"
-      ); // Use your publishable key here
+      );
 
       const { error } = await stripe.redirectToCheckout({ sessionId });
 
@@ -282,7 +282,6 @@ const CartPage = () => {
         </table>
       </div>
 
-      {/* Coupon Section */}
       <div className="mt-8 max-w-md mx-auto sm:mx-0">
         <h3 className="text-xl font-semibold text-red-700 mb-3">
           Apply Coupon
@@ -311,7 +310,6 @@ const CartPage = () => {
         )}
       </div>
 
-      {/* Price Summary */}
       <div className="mt-6 flex flex-col sm:flex-row justify-end gap-4 text-red-800 font-bold text-xl max-w-md mx-auto sm:mx-0">
         <div>
           <span>Total: </span>${cart.totalPrice.toFixed(2)}
@@ -332,7 +330,6 @@ const CartPage = () => {
           )}
       </div>
 
-      {/* Shipping Address Form */}
       <div className="mt-10 max-w-md mx-auto sm:mx-0">
         <h3 className="text-xl font-semibold text-red-700 mb-3">
           Shipping Address
@@ -371,7 +368,6 @@ const CartPage = () => {
         </form>
       </div>
 
-      {/* Order Buttons & Status */}
       <div className="mt-8 max-w-md mx-auto sm:mx-0 flex flex-col gap-4">
         {orderError && (
           <div className="text-red-600 font-semibold">{orderError}</div>

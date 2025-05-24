@@ -44,7 +44,6 @@ const Login = () => {
 
     try {
       setIsSubmitting(true);
-      // POST login with email and password
       const response = await axios.post("http://localhost:3001/auth/login", {
         email,
         password,
