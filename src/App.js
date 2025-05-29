@@ -18,7 +18,7 @@ function App() {
     <HashRouter>
       <div className="min-h-screen flex flex-col bg-gray-50 w-full">
         <Routes>
-          <Route path="/" element={<RootLayout />}>
+          <Route path="/frontend" element={<RootLayout />}>
             <Route index element={<Productpage />} />
             <Route path="Home" element={<Productpage />} />
             <Route path="/orderhistory" element={<OrderHistoryPage />} />
